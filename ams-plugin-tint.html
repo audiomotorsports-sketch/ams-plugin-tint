@@ -1,0 +1,143 @@
+<!--
+  LA Car Tint quote plugin
+  INSERT after </section> of class="hero-banner"
+  BEFORE page-short (after you MOVE offer-cards)
+  Pair with /assets/css/ams-plugin-tint.css
+-->
+<div class="ams-plug" id="ams-plug-tint" data-ams-plugin="tint-v1">
+  <div class="ams-plug-proof">
+    <div><span>Google</span><strong>4.8 from 654</strong></div>
+    <div><span>Yelp</span><strong>4.7 from 777</strong></div>
+    <div><span>Since</span><strong>2003</strong></div>
+    <div><span>Bay</span><strong>Carson</strong></div>
+    <div><span>Walk-in</span><strong>Mon–Sat 9:30–6</strong></div>
+  </div>
+
+  <section class="ams-plug-quote" id="quote">
+    <div class="container">
+      <span class="eyebrow">Tint desk · ask for Nick</span>
+      <h2>Text the year, make, and model. <em>Nick quotes the film.</em></h2>
+      <p class="lead">Solar starting at $249. Solar Ceramic starting at $329. 3M is quote only. Work happens in the Carson bay.</p>
+
+      <div class="ams-plug-grid">
+        <input name="year" inputmode="numeric" autocomplete="off" placeholder="Year" aria-label="Year">
+        <input name="make" autocomplete="off" placeholder="Make" aria-label="Make">
+        <input name="model" autocomplete="off" placeholder="Model" aria-label="Model">
+      </div>
+
+      <div class="ams-plug-tabs" data-chips>
+        <button type="button" data-job="Solar">Solar</button>
+        <button type="button" data-job="Solar Ceramic">Solar Ceramic</button>
+        <button type="button" data-job="Tesla tint">Tesla</button>
+        <button type="button" data-job="Hand-cut">Hand-cut</button>
+        <button type="button" data-job="3M">3M</button>
+      </div>
+
+      <div class="ams-plug-actions">
+        <a class="is-text" data-sms href="sms:+12134291092?body=Quote%20request%20from%20LA%20Car%20Tint.%20Ask%20for%20Nick.">Text us a quote</a>
+        <a class="is-call" href="tel:+13105138800">Call (310) 513-8800</a>
+      </div>
+      <p class="fine">
+        Prefer email?
+        <a href="mailto:audiomotorsports@gmail.com?subject=Quote%20request%20%E2%80%94%20LA%20Car%20Tint">audiomotorsports@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="ams-plug-jobs">
+    <div class="container">
+      <span class="eyebrow">Same shop. Same pages.</span>
+      <h3>Tap a tab. It stays on lacartint.com.</h3>
+      <div class="ams-plug-cards">
+        <a class="ams-plug-card" data-card="Solar" href="/services/">
+          <img src="/assets/img/shop-drop-2026-08-20/tint-bmw-after.jpg" width="1600" height="900" alt="Solar window tint" loading="lazy">
+          <div class="copy">
+            <h4>Solar</h4>
+            <p>Starting at $249. Full car.</p>
+          </div>
+        </a>
+        <a class="ams-plug-card" data-card="Solar Ceramic" href="/services/ceramic-film/">
+          <img src="/assets/img/inner/ceramic-film-desktop.jpg" width="1600" height="900" alt="Solar ceramic tint" loading="lazy">
+          <div class="copy">
+            <h4>Solar Ceramic</h4>
+            <p>Starting at $329. Full car.</p>
+          </div>
+        </a>
+        <a class="ams-plug-card" data-card="Tesla tint" href="/tesla-tint/">
+          <img src="/assets/img/inner/tesla-tint-desktop.jpg" width="1600" height="900" alt="Tesla window tint" loading="lazy">
+          <div class="copy">
+            <h4>Tesla</h4>
+            <p>Tint only. Quote the glass.</p>
+          </div>
+        </a>
+        <a class="ams-plug-card" data-card="Hand-cut" href="/services/hand-cut/">
+          <img src="/assets/img/inner/hand-cut-desktop.jpg" width="1600" height="900" alt="Hand-cut window tint" loading="lazy">
+          <div class="copy">
+            <h4>Hand-cut</h4>
+            <p>Cut on a glass board. Not on your glass.</p>
+          </div>
+        </a>
+        <a class="ams-plug-card" data-card="3M" href="/services/ceramic-film/">
+          <img src="/assets/img/shop-drop-2026-08-20/cullinan-day-3m-web.jpg" width="1600" height="900" alt="3M ceramic tint" loading="lazy">
+          <div class="copy">
+            <h4>3M</h4>
+            <p>Color Stable and Ceramic IR. Quote only.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="ams-plug-sticky" aria-label="Text or call">
+  <a class="is-text" data-sms-sticky href="sms:+12134291092?body=Quote%20request%20from%20LA%20Car%20Tint.%20Ask%20for%20Nick.">Text us</a>
+  <a class="is-call" href="tel:+13105138800">Call</a>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById("ams-plug-tint");
+  if (!root) return;
+  var job = "";
+  function smsHref(body) {
+    var msg = encodeURIComponent(body);
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent)
+      ? "sms:+12134291092&body=" + msg
+      : "sms:+12134291092?body=" + msg;
+  }
+  function body() {
+    var y = ((root.querySelector("[name=year]") || {}).value || "").trim();
+    var mk = ((root.querySelector("[name=make]") || {}).value || "").trim();
+    var md = ((root.querySelector("[name=model]") || {}).value || "").trim();
+    var car = [y, mk, md].filter(Boolean).join(" ");
+    var parts = ["Quote request"];
+    if (car) parts.push(car);
+    if (job) parts.push(job);
+    parts.push("Ask for Nick. From LA Car Tint.");
+    return parts.join(" — ");
+  }
+  function paint() {
+    root.querySelectorAll("[data-job]").forEach(function (b) {
+      b.classList.toggle("is-on", b.getAttribute("data-job") === job);
+    });
+    root.querySelectorAll("[data-card]").forEach(function (c) {
+      c.classList.toggle("is-on", c.getAttribute("data-card") === job);
+    });
+  }
+  function bind(el) {
+    if (!el) return;
+    el.addEventListener("click", function () {
+      el.href = smsHref(body());
+    });
+  }
+  root.querySelectorAll("[data-job]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var next = btn.getAttribute("data-job");
+      job = job === next ? "" : next;
+      paint();
+    });
+  });
+  bind(root.querySelector("[data-sms]"));
+  bind(document.querySelector("[data-sms-sticky]"));
+})();
+</script>
